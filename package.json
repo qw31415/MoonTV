@@ -18,7 +18,7 @@
     "gen:manifest": "node scripts/generate-manifest.js",
     "postbuild": "echo 'Build completed - sitemap generation disabled'",
     "prepare": "husky install",
-    "pages:build": "pnpm gen:runtime && pnpm gen:manifest && next build && pnpm dlx @cloudflare/next-on-pages --experimental-minify"
+    "pages:build": "pnpm gen:runtime && pnpm gen:manifest && next build && cp -r functions .next/ && pnpm dlx @cloudflare/next-on-pages --experimental-minify"
   },
   "dependencies": {
     "@cloudflare/next-on-pages": "^1.13.12",
@@ -29,7 +29,6 @@
     "@headlessui/react": "^2.2.4",
     "@heroicons/react": "^2.2.0",
     "@upstash/redis": "^1.25.0",
-    "@vidstack/react": "^1.12.13",
     "artplayer": "^5.2.3",
     "clsx": "^2.0.0",
     "framer-motion": "^12.18.1",

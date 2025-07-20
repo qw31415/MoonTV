@@ -59,6 +59,17 @@ const nextConfig = {
       tls: false,
       crypto: false,
     };
+    
+    // Miko's optimization: Split large chunks to be under 25MB for Cloudflare Pages
+    if (!config.optimization) {
+      config.optimization = {};
+    }
+    if (!config.optimization.splitChunks) {
+      config.optimization.splitChunks = {};
+    }
+    // Set a max size for chunks to avoid hitting Cloudflare's 25MB limit.
+    // Let's set it to 20MB to be safe.
+    config.optimization.splitChunks.maxSize = 20 * 1024 * 1024;
 
     return config;
   },
